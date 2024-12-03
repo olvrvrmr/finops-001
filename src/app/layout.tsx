@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import AuthButtons from '@/components/AuthButtons'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${inter.className} min-h-screen flex flex-col`}>
+          <Toaster position="top-right" />
           <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
             <Navigation />
             <AuthButtons />
