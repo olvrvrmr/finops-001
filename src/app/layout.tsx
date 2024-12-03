@@ -1,22 +1,38 @@
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Inter } from 'next/font/google'
 import './globals.css'
+import Navigation from '@/components/Navigation'
+import AuthButtons from '@/components/AuthButtons'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata = {
+  title: 'Timesheet Application',
+  description: 'Manage your timesheets effectively',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
-          <header>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+        <body className={`${inter.className} min-h-screen flex flex-col`}>
+          <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
+            <Navigation />
+            <AuthButtons />
           </header>
-          <main>{children}</main>
+          <main className="flex-grow container mx-auto px-4 py-8">
+            {children}
+          </main>
+          <footer className="bg-gray-800 text-white p-4 text-center">
+            © 2024 IGNYTE
+          </footer>
         </body>
       </html>
     </ClerkProvider>
   )
 }
+
