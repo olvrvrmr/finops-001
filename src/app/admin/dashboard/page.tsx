@@ -1,14 +1,8 @@
-import { auth, currentUser, clerkClient } from '@clerk/nextjs/server'
+import { auth, currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { AddConsultantForm } from './AddConsultantForm'
 import { AddClientForm } from './AddClientForm'
-
-async function checkAdminRole(userId: string, orgId: string) {
-  const clerk = await clerkClient()
-  const { data: membershipList } = await clerk.organizations.getOrganizationMembershipList({ organizationId: orgId })
-  const userMembership = membershipList.find(membership => membership.publicUserData?.userId === userId)
-  return userMembership?.role === 'admin'
-}
+import { checkAdminRole } from '@/lib/auth'
 
 export default async function AdminDashboard() {
   const { userId, orgId } = await auth()
