@@ -6,8 +6,8 @@ export default function SelectOrganizationPage() {
       <h1 className="text-4xl font-bold mb-8">Select an Organization</h1>
       <OrganizationList 
         hidePersonal
-        afterSelectOrganizationUrl="/dashboard"
-        afterCreateOrganizationUrl="/dashboard"
+        afterSelectOrganizationUrl="/admin/dashboard"
+        afterCreateOrganizationUrl="/admin/dashboard"
       />
     </div>
   );
